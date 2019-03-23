@@ -23,6 +23,7 @@ class Subscriptions(Resource):
         reqData = request.get_json()
         print(reqData)
         successResponse = True
+        messageResponse = ""
 
         try:
             table.put_item(
@@ -33,11 +34,13 @@ class Subscriptions(Resource):
                     'dni': reqData['dni']
                 }
             )
+            messageResponse = "Se registró exitosamente"
         except Exception as e:
             print(str(e))
+            messageResponse = "Error registrando la subscripción"
             successResponse = False
 
-        return { "success": successResponse }
+        return { "success": successResponse, "message": messageResponse}
 
 api.add_resource(Subscriptions, '/landing/subscriptions')
 
