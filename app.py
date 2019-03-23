@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from flask import Flask, request
 from flask_restful import Resource, Api
 from flask_cors import CORS
@@ -45,4 +47,4 @@ class Subscriptions(Resource):
 api.add_resource(Subscriptions, '/landing/subscriptions')
 
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run(host="0.0.0.0", port=80)
