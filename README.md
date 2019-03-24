@@ -19,20 +19,31 @@ For a first production build you need to make:
 
 ```
 ssh -i "ec2-ia-test.pem" ubuntu@ec2-3-18-197-205.us-east-2.compute.amazonaws.com
-# install necessary packages
+```
+
+Install necessary packages
+
+```
 sudo apt update
 sudo apt -y upgrade
 sudo apt install -y python3-pip
 sudo apt install build-essential libssl-dev libffi-dev python3-dev
 sudo apt install -y python3-venv
-# In order to make it work, you will need to provide
-# SSH access to the EC2 instance to login and clone the repo.
+```
+
+In order to make it work, you will need to provide SSH access to the EC2 instance to login and clone the repo.
+
+```
 ls -al ~/.ssh
 ssh-keygen -t rsa -C "your-email@gmail.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub
-# then, add a new SSH Key into github
+```
+
+Then, add a new SSH Key into github. The next step is run the application
+
+```
 git clone git@github.com:ransilad/IA-backend-test.git
 git pull origin master
 python3.6 -m venv venv
