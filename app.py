@@ -25,6 +25,11 @@ dynamoDB = resource(
 
 class Subscriptions(Resource):
 
+    def get(self):
+
+        return {'ping': 'pong'}
+
+
     def post(self):
 
         successResponse = True
