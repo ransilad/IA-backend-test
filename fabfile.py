@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 
 from boto3 import client as aws
-from fabric.api import cd, env, execute, lcd, local, parallel, run, runs_once, sudo, task
+from fabric.api import cd
+from fabric.api import env
+from fabric.api import execute
+from fabric.api import parallel
+from fabric.api import run
+from fabric.api import runs_once
+from fabric.api import sudo
+from fabric.api import task
 from fabric.contrib import files as remote_files
-from fabric.colors import blue, red, white
-from datetime import datetime
+from fabric.colors import blue
+from fabric.colors import red
 from git import Repo
-from os.path import dirname
 
 
 repository = Repo('.')
