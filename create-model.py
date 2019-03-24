@@ -1,6 +1,9 @@
-import boto3
+# -*- coding: utf-8 -*-
 
-dynamodb = boto3.resource(
+from boto3 import resource
+
+
+dynamodb = resource(
     'dynamodb',
     aws_access_key_id="AKIAIMIX7A3JY5EQ4GHA",
     aws_secret_access_key="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",
@@ -8,9 +11,10 @@ dynamodb = boto3.resource(
     endpoint_url="http://dynamodb.us-east-2.amazonaws.com"
 )
 
+
 table = dynamodb.create_table(
-    TableName='Subscriptions',
-    KeySchema=[
+    TableName = 'Subscriptions',
+    KeySchema = [
         {
             'AttributeName': 'email',
             'KeyType': 'HASH'
@@ -20,7 +24,7 @@ table = dynamodb.create_table(
             'KeyType': 'RANGE'
         }
     ],
-    AttributeDefinitions=[
+    AttributeDefinitions = [
         {
             'AttributeName': 'email',
             'AttributeType': 'S'
@@ -38,7 +42,7 @@ table = dynamodb.create_table(
             'AttributeType': 'S'
         },
     ],
-    LocalSecondaryIndexes=[
+    LocalSecondaryIndexes = [
         {
             'IndexName': 'SubsByName',
             'KeySchema': [
@@ -88,7 +92,7 @@ table = dynamodb.create_table(
             }
         }
     ],
-    ProvisionedThroughput={
+    ProvisionedThroughput = {
         'ReadCapacityUnits': 10,
         'WriteCapacityUnits': 10,
     }
