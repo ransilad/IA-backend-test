@@ -80,3 +80,5 @@ sudo service supervisor restart
 # For verify all is ok
 sudo supervisorctl status
 ```
+
+**TODO:** *This commands could make with Fabric, that is a high level Python library designed to execute shell commands remotely over SSH*
