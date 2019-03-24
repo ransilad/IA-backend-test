@@ -72,13 +72,8 @@ sudo service supervisor restart
 
 ## Update production env
 
-```
-ssh -i "ec2-ia-test.pem" ubuntu@ec2-3-18-197-205.us-east-2.compute.amazonaws.com
-cd IA-backend-test/
-git pull origin master
-sudo service supervisor restart
-# For verify all is ok
-sudo supervisorctl status
-```
+Finally, after you push your changes to github, you can run one command and the deploy will be ready (having the python env active)
 
-**TODO:** *This commands could make with Fabric, that is a high level Python library designed to execute shell commands remotely over SSH*
+```
+fab deploy
+```
