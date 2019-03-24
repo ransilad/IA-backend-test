@@ -3,6 +3,7 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 from flask_cors import CORS
+from boto3.dynamodb.conditions import Key
 import boto3
 
 app = Flask(__name__)
@@ -21,11 +22,19 @@ class Subscriptions(Resource):
 
     def post(self):
 
-        table = dynamodb.Table('Subscriptions')
-        reqData = request.get_json()
-        print(reqData)
         successResponse = True
         messageResponse = ""
+        table = dynamodb.Table('Subscriptions')
+        reqData = request.get_json()
+
+        response = table.query(
+            KeyConditionExpression=Key('email').eq(reqData['email'])
+        )
+
+        if response['Items']:
+            successResponse = False
+            messageResponse = 'Ya se ha registrado una subscripción con ese correo. Gracias!'
+            return { "success": successResponse, "message": messageResponse}
 
         try:
             table.put_item(
@@ -37,8 +46,7 @@ class Subscriptions(Resource):
                 }
             )
             messageResponse = "Se registró exitosamente"
-        except Exception as e:
-            print(str(e))
+        except:
             messageResponse = "Error registrando la subscripción"
             successResponse = False
 
