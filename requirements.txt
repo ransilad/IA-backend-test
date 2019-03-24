@@ -1,4 +1,7 @@
-boto3==1.9.120
 Flask==1.0.2
 Flask-Cors==3.0.7
 Flask-RESTful==0.3.7
+fabric3
+awscli
+boto3
+GitPython
